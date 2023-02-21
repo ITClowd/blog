@@ -7,13 +7,18 @@ tags:
 ## Background Story
 A few months ago I started my own ["Second Brain"](https://knowledge.vogel.business) (for which I use [Obsidian](https://obsidian.md)). I really liked that I can structure my learnings and summaries from my lectures in a way I feel most comfortable with.  Just a few weeks after I started using Obsidian, I thought: "wouldn't it be great if I could access my Vault remotely from any device?" So I looked at my options:
 
-1. **Using Obsidian Sync**
-   I saw, that Obsidian is offering a subscription Service for syncing Obsidian vaults to all of your devices. But while that would be a fairly easy way to archive my desired result, I would need Obsidian installed on every device I want to look at my knowledgebase.
-2. **Using Obsidian publish**
-   On the same page is saw that Obsidian is offering a publish service as well. But for me as a software engineer it seemed like wasted money because I was sure it could be archived with resources that a are either free or already available to me.
-3. **Using Quartz**
-   Since I decided i didn't want to spend any money on this I started using git as version control for my knowledge base. This made Obsidian Sync obsolete because I could sync my files between all my machines without any problems. I did however have some problems with git on my phone so I thought that I could use CI/CD to publish my Vault to a website so I could view it from anywhere.
-   Luckily I found a repo which archived mostly what I want: [Quartz](https://github.com/jackyzha0/quartz) (it is based on Hugo, which I wanted to check out anyways)
+### 1. Using Obsidian Sync
+I saw, that Obsidian is offering a subscription Service for syncing Obsidian vaults to all of your devices. But while that would be a fairly easy way to archive my desired result, I would need Obsidian installed on every device I want to look at my knowledgebase.
+
+### 2. Using Obsidian publish
+On the same page is saw that Obsidian is offering a publish service as well. But for me as a software engineer it seemed like wasted money because I was sure it could be archived with resources that a are either free or already available to me.
+
+### 3. Using Quartz
+Since I decided i didn't want to spend any money on this I started using git as version control for my knowledge base. This made Obsidian Sync obsolete because I could sync my files between all my machines without any problems. I did however have some problems with git on my phone so I thought that I could use CI/CD to publish my Vault to a website so I could view it from anywhere.
+
+
+### Implementation Rules
+Luckily I found a repo which archived mostly what I want: [Quartz](https://github.com/jackyzha0/quartz) (it is based on Hugo, which I wanted to check out anyways)
 
 Before I started using Quartz I made a few rules on how I want my vault deployed:
 1. **Fully automated**
