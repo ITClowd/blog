@@ -1,13 +1,8 @@
 ---
-title: "Momolem's Digital Garden"
+title: "Moritz Vogel"
 enableToc: false
 ---
 
-Hello There 👋. This is my own digital garden
+Hello There 👋. This is a small blog about stuff i find interesting.
+It will mostly be about computer science, music and baking
 
-My current topics:
-1. [[CleanCode/Clean Code]]
-	- [[CleanCode/Clean Code Developer]]
-	- [[CleanCode/Design Patterns]]
-
-[[Random Page]]
