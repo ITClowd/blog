@@ -13,7 +13,7 @@ enableRecentNotes: false
 enableGitHubEdit: false
 enableGitInfo: false
 enableMermaid: true
-GitHubLink: https://github.com/Momolem/quartz/tree/hugo/content
+GitHubLink: https://github.com/ITClowd/blog/tree/hugo/content
 search:
   enableSemanticSearch: false
   operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
