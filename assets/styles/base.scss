@@ -288,6 +288,8 @@ sup>a {
 
   &>a {
     font-family: var(--font-header);
+    text-decoration: none;
+    color: var(--lightest-slate);
   }
 }
 
