@@ -1,8 +1,8 @@
 baseURL: /
 title: Eureka Demo
 ignoreFiles: [
-  "/content/templates/*"
-  "/content/private/*"
+  "/content/templates/*",
+  "/content/private/*",
 ]
 # Uncomment when not installing with Hugo Modules
 # theme: eureka
@@ -12,7 +12,8 @@ theme: wangchucheng.com/hugo-eureka
 
 paginate: 3
 copyright: >
-  &copy; 2023 <a href="https://www.vogel.business/">vogel.business</a> 
+  &copy; 2023 <a href="https://www.vogel.business/">vogel.business</a> and <a
+  href="https://www.ruiqima.com/">MA Ruiqi</a>
 enableEmoji: true
 enableGitInfo: false
 summaryLength: 75
