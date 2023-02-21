@@ -1,7 +1,7 @@
 ---
 title: "Publishing Obsidian via Github Actions"
 tags: 
-  - "#cs"
+  - "cs"
 ---
 
 ## Background Story
