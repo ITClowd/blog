@@ -1,0 +1,29 @@
+name: Moritz Vogel
+enableToc: true
+openToc: false
+enableLinkPreview: true
+enableLatex: true
+enableCodeBlockTitle: true
+enableCodeBlockCopy: true
+enableCallouts: true
+enableSPA: true
+enableFooter: true
+enableContextualBacklinks: true
+enableRecentNotes: false
+enableGitHubEdit: false
+enableGitInfo: false
+enableMermaid: true
+GitHubLink: https://github.com/Momolem/quartz/tree/hugo/content
+search:
+  enableSemanticSearch: false
+  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
+  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
+description:
+  A subset of my digital second brain
+page_title:
+  "Momolem's Digital Garden"
+links:
+  - link_name: GitHub
+    link: https://github.com/Momolem
+  - link_name: Gitlab
+    link: https://gitlab.com/Momolem

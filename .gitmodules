@@ -1,0 +1,3 @@
+[submodule "content/CleanCode"]
+	path = content/CleanCode
+	url = git@github.com:Momolem/CleanCode.git
