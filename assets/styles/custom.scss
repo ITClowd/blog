@@ -109,3 +109,20 @@
   --font-header: "DM Serif Display";
   --font-mono: "Red Hat Mono"
 }
+
+.column {
+  display: grid;
+}
+
+.row {
+  display: block;
+  padding: 1rem 0
+}
+
+.flex {
+  display: flex
+}
+
+.root-title {
+  flex-grow: 1;
+}
