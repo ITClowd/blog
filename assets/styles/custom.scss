@@ -91,16 +91,16 @@
   --blue: #57cbff;
   --background: linear-gradient(23deg, var(--dark-navy) 40%, var(--light-navy) 100%);
   // Hugo Colors
-  --light: #1e1e21 !important;
-  --dark: #fbfffe !important;
-  --secondary: #6b879a !important;
+  --light: var(--dark-navy) !important;
+  --dark: var(--lightest-slate) !important;
+  --secondary: var(--green) !important;
   --visited: #4a575e !important;
   --tertiary: #84a59d !important;
-  --primary: #f58382 !important;
+  --primary: var(--pink) !important;
   --gray: #d4d4d4 !important;
-  --lightgray: #292633 !important;
+  --lightgray: var(--light-navy) !important;
   --outlinegray: #343434 !important;
-  --highlighted: #574010;
+  --highlighted: var(--blue);
 
 }
 
