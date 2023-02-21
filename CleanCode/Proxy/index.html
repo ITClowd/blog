@@ -1,0 +1,192 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="tags: #cleancode/designpatterns
+Proxy Intent Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object."><meta property="og:title" content="Proxy"><meta property="og:description" content="tags: #cleancode/designpatterns
+Proxy Intent Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object."><meta property="og:type" content="website"><meta property="og:image" content="https://knowledge.vogel.businessicon.png"><meta property="og:url" content="https://knowledge.vogel.business/CleanCode/Proxy/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="Proxy"><meta name=twitter:description content="tags: #cleancode/designpatterns
+Proxy Intent Proxy is a structural design pattern that lets you provide a substitute or placeholder for another object."><meta name=twitter:image content="https://knowledge.vogel.businessicon.png"><title>Proxy</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://knowledge.vogel.business/icon.png><link href=https://knowledge.vogel.business/styles.b369a84b3c6e6bfd686ad1f9da65641c.min.css rel=stylesheet><link href=https://knowledge.vogel.business/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://knowledge.vogel.business/js/darkmode.49e02f55b6384a9e088ce2395a1ab3fb.min.js></script>
+<script src=https://knowledge.vogel.business/js/util.a0ccf91e1937fe761a74da4946452710.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script async src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script async src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script async src=https://knowledge.vogel.business/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://knowledge.vogel.business",fetchData=Promise.all([fetch("https://knowledge.vogel.business/indices/linkIndex.05877276bafea51c34835ef637a0896f.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://knowledge.vogel.business/indices/contentIndex.033a8de1cbae8bcc739bc6f4ccdb68d0.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://knowledge.vogel.business",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!0;drawGraph("https://knowledge.vogel.business",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/knowledge.vogel.business\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=knowledge.vogel.business src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://knowledge.vogel.business/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://knowledge.vogel.business>Momolem's Digital Garden</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Proxy</h1><p class=meta>Last updated
+Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#intent>Intent</a></li><li><a href=#problem>Problem</a></li><li><a href=#solution> Solution</a></li><li><a href=#real-world-analogy> Real-World Analogy</a></li><li><a href=#structure> Structure</a></li><li><a href=#pseudocode> Pseudocode</a></li><li><a href=#applicability>Applicability</a></li><li><a href=#how-to-implement>How to Implement</a></li><li><a href=#pro-and--cons>Pro and Cons</a></li><li><a href=#relations-with-other-patterns>Relations with Other Patterns</a></li></ol></nav></details></aside><p>tags: #cleancode/designpatterns</p><a href=#proxy><h1 id=proxy><span class=hanchor arialabel=Anchor># </span>Proxy</h1></a><a href=#intent><h2 id=intent><span class=hanchor arialabel=Anchor># </span>Intent</h2></a><p><strong>Proxy</strong> is a structural design pattern that lets you provide a substitute or placeholder for another object. A proxy controls access to the original object, allowing you to perform something either before or after the request gets through to the original object.</p><a href=#problem><h2 id=problem><span class=hanchor arialabel=Anchor># </span>Problem</h2></a><p>Why would you want to control access to an object? Here is an example: you have a massive object that consumes a vast amount of system resources. You need it from time to time, but not always.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/proxy/problem-en.png width=auto alt="Problem solved by Proxy pattern"></p><p>Database queries can be really slow.</p><p>You could implement lazy initialization: create this object only when it’s actually needed. All of the object’s clients would need to execute some deferred initialization code. Unfortunately, this would probably cause a lot of code duplication.</p><p>In an ideal world, we’d want to put this code directly into our object’s class, but that isn’t always possible. For instance, the class may be part of a closed 3rd-party library.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span> Solution</h2></a><p>The Proxy pattern suggests that you create a new proxy class with the same interface as an original service object. Then you update your app so that it passes the proxy object to all of the original object’s clients. Upon receiving a request from a client, the proxy creates a real service object and delegates all the work to it.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/proxy/solution-en.png width=auto alt="Solution with the Proxy pattern"></p><p>The proxy disguises itself as a database object. It can handle lazy initialization and result caching without the client or the real database object even knowing.</p><p>But what’s the benefit? If you need to execute something either before or after the primary logic of the class, the proxy lets you do this without changing that class. Since the proxy implements the same interface as the original class, it can be passed to any client that expects a real service object.</p><a href=#real-world-analogy><h2 id=real-world-analogy><span class=hanchor arialabel=Anchor># </span> Real-World Analogy</h2></a><p><img src=https://refactoring.guru/images/patterns/diagrams/proxy/live-example.png width=auto alt="A credit card is a proxy for a bundle of cash"></p><p>Credit cards can be used for payments just the same as cash.</p><p>A credit card is a proxy for a bank account, which is a proxy for a bundle of cash. Both implement the same interface: they can be used for making a payment. A consumer feels great because there’s no need to carry loads of cash around. A shop owner is also happy since the income from a transaction gets added electronically to the shop’s bank account without the risk of losing the deposit or getting robbed on the way to the bank.</p><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span> Structure</h2></a><p><img src=https://refactoring.guru/images/patterns/diagrams/proxy/structure.png width=auto alt="Structure of the Proxy design pattern"></p><ol><li><p>The <strong>Service Interface</strong> declares the interface of the Service. The proxy must follow this interface to be able to disguise itself as a service object.</p></li><li><p>The <strong>Service</strong> is a class that provides some useful business logic.</p></li><li><p>The <strong>Proxy</strong> class has a reference field that points to a service object. After the proxy finishes its processing (e.g., lazy initialization, logging, access control, caching, etc.), it passes the request to the service object.</p><p>Usually, proxies manage the full lifecycle of their service objects.</p></li><li><p>The <strong>Client</strong> should work with both services and proxies via the same interface. This way you can pass a proxy into any code that expects a service object.</p></li></ol><a href=#pseudocode><h2 id=pseudocode><span class=hanchor arialabel=Anchor># </span> Pseudocode</h2></a><p>This example illustrates how the <strong>Proxy</strong> pattern can help to introduce lazy initialization and caching to a 3rd-party YouTube integration library.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/proxy/example.png width=auto alt="Structure of the Proxy pattern example"></p><p>Caching results of a service with a proxy.</p><p>The library provides us with the video downloading class. However, it’s very inefficient. If the client application requests the same video multiple times, the library just downloads it over and over, instead of caching and reusing the first downloaded file.</p><p>The proxy class implements the same interface as the original downloader and delegates it all the work. However, it keeps track of the downloaded files and returns the cached result when the app requests the same video multiple times.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=c1>// The interface of a remote service.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>interface</span> <span class=nc>ThirdPartyYouTubeLib</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>listVideos</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>getVideoInfo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>downloadVideo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// The concrete implementation of a service connector. Methods
+</span></span></span><span class=line><span class=cl><span class=c1>// of this class can request information from YouTube. The speed
+</span></span></span><span class=line><span class=cl><span class=c1>// of the request depends on a user&#39;s internet connection as
+</span></span></span><span class=line><span class=cl><span class=c1>// well as YouTube&#39;s. The application will slow down if a lot of
+</span></span></span><span class=line><span class=cl><span class=c1>// requests are fired at the same time, even if they all request
+</span></span></span><span class=line><span class=cl><span class=c1>// the same information.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>ThirdPartyYouTubeClass</span> <span class=n>implements</span> <span class=n>ThirdPartyYouTubeLib</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>listVideos</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Send an API request to YouTube.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>getVideoInfo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Get metadata about some video.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>downloadVideo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Download a video file from YouTube.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// To save some bandwidth, we can cache request results and keep
+</span></span></span><span class=line><span class=cl><span class=c1>// them for some time. But it may be impossible to put such code
+</span></span></span><span class=line><span class=cl><span class=c1>// directly into the service class. For example, it could have
+</span></span></span><span class=line><span class=cl><span class=c1>// been provided as part of a third party library and/or defined
+</span></span></span><span class=line><span class=cl><span class=c1>// as `final`. That&#39;s why we put the caching code into a new
+</span></span></span><span class=line><span class=cl><span class=c1>// proxy class which implements the same interface as the
+</span></span></span><span class=line><span class=cl><span class=c1>// service class. It delegates to the service object only when
+</span></span></span><span class=line><span class=cl><span class=c1>// the real requests have to be sent.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>CachedYouTubeClass</span> <span class=n>implements</span> <span class=n>ThirdPartyYouTubeLib</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=k>private</span> <span class=k>field</span> <span class=n>service</span><span class=p>:</span> <span class=n>ThirdPartyYouTubeLib</span>
+</span></span><span class=line><span class=cl>    <span class=k>private</span> <span class=k>field</span> <span class=n>listCache</span><span class=p>,</span> <span class=n>videoCache</span>
+</span></span><span class=line><span class=cl>    <span class=k>field</span> <span class=n>needReset</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>constructor</span> <span class=n>CachedYouTubeClass</span><span class=p>(</span><span class=n>service</span><span class=p>:</span> <span class=n>ThirdPartyYouTubeLib</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=n>service</span> <span class=p>=</span> <span class=n>service</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>listVideos</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>listCache</span> <span class=o>==</span> <span class=k>null</span> <span class=o>||</span> <span class=n>needReset</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>listCache</span> <span class=p>=</span> <span class=n>service</span><span class=p>.</span><span class=n>listVideos</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>listCache</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>getVideoInfo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>videoCache</span> <span class=o>==</span> <span class=k>null</span> <span class=o>||</span> <span class=n>needReset</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>videoCache</span> <span class=p>=</span> <span class=n>service</span><span class=p>.</span><span class=n>getVideoInfo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>videoCache</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>downloadVideo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(!</span><span class=n>downloadExists</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=o>||</span> <span class=n>needReset</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>service</span><span class=p>.</span><span class=n>downloadVideo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// The GUI class, which used to work directly with a service
+</span></span></span><span class=line><span class=cl><span class=c1>// object, stays unchanged as long as it works with the service
+</span></span></span><span class=line><span class=cl><span class=c1>// object through an interface. We can safely pass a proxy
+</span></span></span><span class=line><span class=cl><span class=c1>// object instead of a real service object since they both
+</span></span></span><span class=line><span class=cl><span class=c1>// implement the same interface.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>YouTubeManager</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=k>protected</span> <span class=k>field</span> <span class=n>service</span><span class=p>:</span> <span class=n>ThirdPartyYouTubeLib</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>constructor</span> <span class=n>YouTubeManager</span><span class=p>(</span><span class=n>service</span><span class=p>:</span> <span class=n>ThirdPartyYouTubeLib</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=p>.</span><span class=n>service</span> <span class=p>=</span> <span class=n>service</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>renderVideoPage</span><span class=p>(</span><span class=n>id</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>info</span> <span class=p>=</span> <span class=n>service</span><span class=p>.</span><span class=n>getVideoInfo</span><span class=p>(</span><span class=n>id</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Render the video page.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>renderListPanel</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>list</span> <span class=p>=</span> <span class=n>service</span><span class=p>.</span><span class=n>listVideos</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Render the list of video thumbnails.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>reactOnUserInput</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>renderVideoPage</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>renderListPanel</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// The application can configure proxies on the fly.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Application</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=k>init</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>aYouTubeService</span> <span class=p>=</span> <span class=n>new</span> <span class=n>ThirdPartyYouTubeClass</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=n>aYouTubeProxy</span> <span class=p>=</span> <span class=n>new</span> <span class=n>CachedYouTubeClass</span><span class=p>(</span><span class=n>aYouTubeService</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>manager</span> <span class=p>=</span> <span class=n>new</span> <span class=n>YouTubeManager</span><span class=p>(</span><span class=n>aYouTubeProxy</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>manager</span><span class=p>.</span><span class=n>reactOnUserInput</span><span class=p>()</span>     
+</span></span></code></pre></td></tr></table></div></div><a href=#applicability><h2 id=applicability><span class=hanchor arialabel=Anchor># </span>Applicability</h2></a><p>There are dozens of ways to utilize the Proxy pattern. Let’s go over the most popular uses.</p><ul><li><p><strong>Lazy initialization (virtual proxy). This is when you have a heavyweight service object that wastes system resources by being always up, even though you only need it from time to time.</strong>
+Instead of creating the object when the app launches, you can delay the object’s initialization to a time when it’s really needed.</p></li><li><p><strong>Access control (protection proxy). This is when you want only specific clients to be able to use the service object; for instance, when your objects are crucial parts of an operating system and clients are various launched applications (including malicious ones).</strong>
+The proxy can pass the request to the service object only if the client’s credentials match some criteria.</p></li><li><p><strong>Local execution of a remote service (remote proxy). This is when the service object is located on a remote server.</strong>
+ In this case, the proxy passes the client request over the network, handling all of the nasty details of working with the network.</p></li><li><p><strong>Logging requests (logging proxy). This is when you want to keep a history of requests to the service object.</strong>
+The proxy can log each request before passing it to the service.</p></li><li><p><strong>Caching request results (caching proxy). This is when you need to cache results of client requests and manage the life cycle of this cache, especially if results are quite large.</strong>
+The proxy can implement caching for recurring requests that always yield the same results. The proxy may use the parameters of requests as the cache keys.</p></li><li><p><strong>Smart reference. This is when you need to be able to dismiss a heavyweight object once there are no clients that use it.</strong>
+The proxy can keep track of clients that obtained a reference to the service object or its results. From time to time, the proxy may go over the clients and check whether they are still active. If the client list gets empty, the proxy might dismiss the service object and free the underlying system resources.</p><p>The proxy can also track whether the client had modified the service object. Then the unchanged objects may be reused by other clients.</p></li></ul><a href=#how-to-implement><h2 id=how-to-implement><span class=hanchor arialabel=Anchor># </span>How to Implement</h2></a><ol><li><p>If there’s no pre-existing service interface, create one to make proxy and service objects interchangeable. Extracting the interface from the service class isn’t always possible, because you’d need to change all of the service’s clients to use that interface. Plan B is to make the proxy a subclass of the service class, and this way it’ll inherit the interface of the service.</p></li><li><p>Create the proxy class. It should have a field for storing a reference to the service. Usually, proxies create and manage the whole life cycle of their services. On rare occasions, a service is passed to the proxy via a constructor by the client.</p></li><li><p>Implement the proxy methods according to their purposes. In most cases, after doing some work, the proxy should delegate the work to the service object.</p></li><li><p>Consider introducing a creation method that decides whether the client gets a proxy or a real service. This can be a simple static method in the proxy class or a full-blown factory method.</p></li><li><p>Consider implementing lazy initialization for the service object.</p></li></ol><a href=#pro-and--cons><h2 id=pro-and--cons><span class=hanchor arialabel=Anchor># </span>Pro and Cons</h2></a><table><thead><tr><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td>You can control the service object without clients knowing about it.</td><td>The code may become more complicated since you need to introduce a lot of new classes.</td></tr><tr><td>You can manage the lifecycle of the service object when clients don’t care about it.</td><td>The response from the service might get delayed.</td></tr><tr><td>The proxy works even if the service object isn’t ready or is not available.</td><td></td></tr><tr><td><a href=/CleanCode/Open-Closed-Principle rel=noopener class=internal-link data-src=/CleanCode/Open-Closed-Principle>Open Closed Principle</a>. You can introduce new proxies without changing the service or clients.</td><td></td></tr></tbody></table><a href=#relations-with-other-patterns><h2 id=relations-with-other-patterns><span class=hanchor arialabel=Anchor># </span>Relations with Other Patterns</h2></a><ul><li><a href=/CleanCode/Adapter rel=noopener class=internal-link data-src=/CleanCode/Adapter>Adapter</a> provides a different interface to the wrapped object, Proxy provides it with the same interface, and <a href=/CleanCode/Decorator rel=noopener class=internal-link data-src=/CleanCode/Decorator>Decorator</a> provides it with an enhanced interface.</li><li><a href=/CleanCode/Facade rel=noopener class=internal-link data-src=/CleanCode/Facade>Facade</a> is similar to Proxy in that both buffer a complex entity and initialize it on its own. Unlike <a href=/CleanCode/Facade rel=noopener class=internal-link data-src=/CleanCode/Facade>Facade</a>, Proxy has the same interface as its service object, which makes them interchangeable.</li><li><a href=/CleanCode/Decorator rel=noopener class=internal-link data-src=/CleanCode/Decorator>Decorator</a> and Proxy have similar structures, but very different intents. Both patterns are built on the composition principle, where one object is supposed to delegate some of the work to another. The difference is that a Proxy usually manages the life cycle of its service object on its own, whereas the composition of Decorators is always controlled by the client.</li></ul></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/CleanCode/Adapter/ data-ctx=CleanCode/Proxy data-src=/CleanCode/Adapter class=internal-link>Adapter</a></li><li><a href=/CleanCode/Decorator/ data-ctx=CleanCode/Proxy data-src=/CleanCode/Decorator class=internal-link>Decorator</a></li><li><a href=/CleanCode/Design-Patterns/ data-ctx=CleanCode/Proxy data-src=/CleanCode/Design-Patterns class=internal-link>Design Patterns</a></li><li><a href=/CleanCode/Facade/ data-ctx=CleanCode/Proxy data-src=/CleanCode/Facade class=internal-link>Facade</a></li></ul></div><div><script async src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://knowledge.vogel.business/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Moritz Vogel using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://knowledge.vogel.business>Home</a></li><li><a href=https://github.com/Momolem>GitHub</a></li><li><a href=https://gitlab.com/Momolem>Gitlab</a></li></ul></footer></div></div></body></html>

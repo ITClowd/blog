@@ -1,0 +1,242 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=description content="tags: #cleancode/designpatterns
+Visitor Intent Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate."><meta property="og:title" content="Visitor"><meta property="og:description" content="tags: #cleancode/designpatterns
+Visitor Intent Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate."><meta property="og:type" content="website"><meta property="og:image" content="https://knowledge.vogel.businessicon.png"><meta property="og:url" content="https://knowledge.vogel.business/CleanCode/Visitor/"><meta property="og:width" content="200"><meta property="og:height" content="200"><meta name=twitter:card content="summary"><meta name=twitter:title content="Visitor"><meta name=twitter:description content="tags: #cleancode/designpatterns
+Visitor Intent Visitor is a behavioral design pattern that lets you separate algorithms from the objects on which they operate."><meta name=twitter:image content="https://knowledge.vogel.businessicon.png"><title>Visitor</title><meta name=viewport content="width=device-width,initial-scale=1"><link rel="shortcut icon" type=image/png href=https://knowledge.vogel.business/icon.png><link href=https://knowledge.vogel.business/styles.b369a84b3c6e6bfd686ad1f9da65641c.min.css rel=stylesheet><link href=https://knowledge.vogel.business/styles/_light_syntax.86a48a52faebeaaf42158b72922b1c90.min.css rel=stylesheet id=theme-link><script src=https://knowledge.vogel.business/js/darkmode.49e02f55b6384a9e088ce2395a1ab3fb.min.js></script>
+<script src=https://knowledge.vogel.business/js/util.a0ccf91e1937fe761a74da4946452710.min.js></script>
+<link rel=preload href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css as=style onload='this.onload=null,this.rel="stylesheet"' integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR crossorigin=anonymous></script>
+<script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/contrib/copy-tex.min.js integrity=sha384-ww/583aHhxWkz5DEVn6OKtNiIaLi2iBRNZXfJRiY1Ai7tnJ9UXpEsyvOITVpTl4A crossorigin=anonymous></script>
+<script async src=https://unpkg.com/@floating-ui/core@0.7.3></script>
+<script async src=https://unpkg.com/@floating-ui/dom@0.5.4></script>
+<script async src=https://knowledge.vogel.business/js/popover.aa9bc99c7c38d3ae9538f218f1416adb.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/code-title.ce4a43f09239a9efb48fee342e8ef2df.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/clipboard.2913da76d3cb21c5deaa4bae7da38c9f.min.js></script>
+<script defer src=https://knowledge.vogel.business/js/callouts.7723cac461d613d118ee8bb8216b9838.min.js></script>
+<script>const SEARCH_ENABLED=!1,LATEX_ENABLED=!0,PRODUCTION=!0,BASE_URL="https://knowledge.vogel.business",fetchData=Promise.all([fetch("https://knowledge.vogel.business/indices/linkIndex.05877276bafea51c34835ef637a0896f.min.json").then(e=>e.json()).then(e=>({index:e.index,links:e.links})),fetch("https://knowledge.vogel.business/indices/contentIndex.033a8de1cbae8bcc739bc6f4ccdb68d0.min.json").then(e=>e.json())]).then(([{index:e,links:t},n])=>({index:e,links:t,content:n})),render=()=>{const e=new URL(BASE_URL),t=e.pathname,n=window.location.pathname,s=t==n;addCopyButtons(),addTitleToCodeBlocks(),addCollapsibleCallouts(),initPopover("https://knowledge.vogel.business",!0);const o=document.getElementById("footer");if(o){const e=document.getElementById("graph-container");if(!e)return requestAnimationFrame(render);e.textContent="";const t=s&&!0;drawGraph("https://knowledge.vogel.business",t,[{"/moc":"#4388cc"}],t?{centerForce:1,depth:-1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.5,linkDistance:1,opacityScale:3,repelForce:1,scale:1.4}:{centerForce:1,depth:1,enableDrag:!0,enableLegend:!1,enableZoom:!0,fontSize:.6,linkDistance:1,opacityScale:3,repelForce:2,scale:1.2})}var i=document.getElementsByClassName("mermaid");i.length>0&&import("https://unpkg.com/mermaid@9/dist/mermaid.esm.min.mjs").then(e=>{e.default.init()});function a(n){const e=n.target,t=e.className.split(" "),s=t.includes("broken"),o=t.includes("internal-link");plausible("Link Click",{props:{href:e.href,broken:s,internal:o,graph:!1}})}const r=document.querySelectorAll("a");for(link of r)link.className.includes("root-title")&&link.addEventListener("click",a,{once:!0})},init=(e=document)=>{addCopyButtons(),addTitleToCodeBlocks(),renderMathInElement(e.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1}],macros:{'’':"'"},throwOnError:!1})}</script><script type=module>
+    import { attachSPARouting } from "https:\/\/knowledge.vogel.business\/js\/router.d6fe6bd821db9ea97f9aeefae814d8e7.min.js"
+    attachSPARouting(init, render)
+  </script><script defer data-domain=knowledge.vogel.business src=https://plausible.io/js/script.js></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script></head><body><div id=search-container><div id=search-space><input autocomplete=off id=search-bar name=search type=text aria-label=Search placeholder="Search for something..."><div id=results-container></div></div></div><script src=https://cdn.jsdelivr.net/npm/flexsearch@0.7.21/dist/flexsearch.bundle.js integrity="sha256-i3A0NZGkhsKjVMzFxv3ksk0DZh3aXqu0l49Bbh0MdjE=" crossorigin=anonymous defer></script>
+<script defer src=https://knowledge.vogel.business/js/full-text-search.e6e2e0c213187ca0c703d6e2c7a77fcd.min.js></script><div class=singlePage><header><h1 id=page-title><a class=root-title href=https://knowledge.vogel.business>Momolem's Digital Garden</a></h1><div class=spacer></div><div id=search-icon><p>Search</p><svg tabindex="0" aria-labelledby="title desc" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search Icon</title><desc id="desc">Icon to open search</desc><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"/><circle cx="8" cy="8" r="7"/></g></svg></div><div class=darkmode><input class=toggle id=darkmode-toggle type=checkbox tabindex=-1>
+<label id=toggle-label-light for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="dayIcon" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35"><title>Light Mode</title><path d="M6 17.5C6 16.672 5.328 16 4.5 16h-3C.672 16 0 16.672.0 17.5S.672 19 1.5 19h3C5.328 19 6 18.328 6 17.5zM7.5 26c-.414.0-.789.168-1.061.439l-2 2C4.168 28.711 4 29.086 4 29.5 4 30.328 4.671 31 5.5 31c.414.0.789-.168 1.06-.44l2-2C8.832 28.289 9 27.914 9 27.5 9 26.672 8.329 26 7.5 26zm10-20C18.329 6 19 5.328 19 4.5v-3C19 .672 18.329.0 17.5.0S16 .672 16 1.5v3C16 5.328 16.671 6 17.5 6zm10 3c.414.0.789-.168 1.06-.439l2-2C30.832 6.289 31 5.914 31 5.5 31 4.672 30.329 4 29.5 4c-.414.0-.789.168-1.061.44l-2 2C26.168 6.711 26 7.086 26 7.5 26 8.328 26.671 9 27.5 9zM6.439 8.561C6.711 8.832 7.086 9 7.5 9 8.328 9 9 8.328 9 7.5c0-.414-.168-.789-.439-1.061l-2-2C6.289 4.168 5.914 4 5.5 4 4.672 4 4 4.672 4 5.5c0 .414.168.789.439 1.06l2 2.001zM33.5 16h-3c-.828.0-1.5.672-1.5 1.5s.672 1.5 1.5 1.5h3c.828.0 1.5-.672 1.5-1.5S34.328 16 33.5 16zM28.561 26.439C28.289 26.168 27.914 26 27.5 26c-.828.0-1.5.672-1.5 1.5.0.414.168.789.439 1.06l2 2C28.711 30.832 29.086 31 29.5 31c.828.0 1.5-.672 1.5-1.5.0-.414-.168-.789-.439-1.061l-2-2zM17.5 29c-.829.0-1.5.672-1.5 1.5v3c0 .828.671 1.5 1.5 1.5s1.5-.672 1.5-1.5v-3C19 29.672 18.329 29 17.5 29zm0-22C11.71 7 7 11.71 7 17.5S11.71 28 17.5 28 28 23.29 28 17.5 23.29 7 17.5 7zm0 18c-4.136.0-7.5-3.364-7.5-7.5s3.364-7.5 7.5-7.5 7.5 3.364 7.5 7.5S21.636 25 17.5 25z"/></svg></label><label id=toggle-label-dark for=darkmode-toggle tabindex=-1><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="nightIcon" viewBox="0 0 100 100" style="enable-background='new 0 0 100 100'"><title>Dark Mode</title><path d="M96.76 66.458c-.853-.852-2.15-1.064-3.23-.534-6.063 2.991-12.858 4.571-19.655 4.571C62.022 70.495 50.88 65.88 42.5 57.5 29.043 44.043 25.658 23.536 34.076 6.47c.532-1.08.318-2.379-.534-3.23-.851-.852-2.15-1.064-3.23-.534-4.918 2.427-9.375 5.619-13.246 9.491-9.447 9.447-14.65 22.008-14.65 35.369.0 13.36 5.203 25.921 14.65 35.368s22.008 14.65 35.368 14.65c13.361.0 25.921-5.203 35.369-14.65 3.872-3.871 7.064-8.328 9.491-13.246C97.826 68.608 97.611 67.309 96.76 66.458z"/></svg></label></div></header><article><h1>Visitor</h1><p class=meta>Last updated
+Unknown</p><ul class=tags></ul><aside class=mainTOC><details><summary>Table of Contents</summary><nav id=TableOfContents><ol><li><a href=#intent>Intent</a></li><li><a href=#problem>Problem</a></li><li><a href=#solution> Solution</a></li><li><a href=#real-world-analogy> Real-World Analogy</a></li><li><a href=#structure> Structure</a></li><li><a href=#pseudocode> Pseudocode</a></li><li><a href=#applicability> Applicability</a></li><li><a href=#how-to-implement>How to Implement</a></li><li><a href=#pro-and--cons>Pro and Cons</a></li><li><a href=#relations-with-other-patterns>Relations with Other Patterns</a></li></ol></nav></details></aside><p>tags: #cleancode/designpatterns</p><a href=#visitor><h1 id=visitor><span class=hanchor arialabel=Anchor># </span>Visitor</h1></a><a href=#intent><h2 id=intent><span class=hanchor arialabel=Anchor># </span>Intent</h2></a><p><strong>Visitor</strong> is a behavioral design pattern that lets you separate algorithms from the objects on which they operate.</p><a href=#problem><h2 id=problem><span class=hanchor arialabel=Anchor># </span>Problem</h2></a><p>Imagine that your team develops an app which works with geographic information structured as one colossal graph. Each node of the graph may represent a complex entity such as a city, but also more granular things like industries, sightseeing areas, etc. The nodes are connected with others if there’s a road between the real objects that they represent. Under the hood, each node type is represented by its own class, while each specific node is an object.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/visitor/problem1.png width=auto alt="Exporting the graph into XML"></p><p>Exporting the graph into XML.</p><p>At some point, you got a task to implement exporting the graph into XML format. At first, the job seemed pretty straightforward. You planned to add an export method to each node class and then leverage recursion to go over each node of the graph, executing the export method. The solution was simple and elegant: thanks to polymorphism, you weren’t coupling the code which called the export method to concrete classes of nodes.</p><p>Unfortunately, the system architect refused to allow you to alter existing node classes. He said that the code was already in production and he didn’t want to risk breaking it because of a potential bug in your changes.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/visitor/problem2-en.png width=auto alt="The XML export method had to be added into all node classes"></p><p>The XML export method had to be added into all node classes, which bore the risk of breaking the whole application if any bugs slipped through along with the change.</p><p>Besides, he questioned whether it makes sense to have the XML export code within the node classes. The primary job of these classes was to work with geodata. The XML export behavior would look alien there.</p><p>There was another reason for the refusal. It was highly likely that after this feature was implemented, someone from the marketing department would ask you to provide the ability to export into a different format, or request some other weird stuff. This would force you to change those precious and fragile classes again.</p><a href=#solution><h2 id=solution><span class=hanchor arialabel=Anchor># </span> Solution</h2></a><p>The Visitor pattern suggests that you place the new behavior into a separate class called <em>visitor</em>, instead of trying to integrate it into existing classes. The original object that had to perform the behavior is now passed to one of the visitor’s methods as an argument, providing the method access to all necessary data contained within the object.</p><p>Now, what if that behavior can be executed over objects of different classes? For example, in our case with XML export, the actual implementation will probably be a little bit different across various node classes. Thus, the visitor class may define not one, but a set of methods, each of which could take arguments of different types, like this:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=k>class</span> <span class=nc>ExportVisitor</span> <span class=n>implements</span> <span class=n>Visitor</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>doForCity</span><span class=p>(</span><span class=n>City</span> <span class=n>c</span><span class=p>)</span> <span class=p>{</span> <span class=o>..</span><span class=p>.</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>doForIndustry</span><span class=p>(</span><span class=n>Industry</span> <span class=n>f</span><span class=p>)</span> <span class=p>{</span> <span class=o>..</span><span class=p>.</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>doForSightSeeing</span><span class=p>(</span><span class=n>SightSeeing</span> <span class=n>ss</span><span class=p>)</span> <span class=p>{</span> <span class=o>..</span><span class=p>.</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span></code></pre></td></tr></table></div></div><p>But how exactly would we call these methods, especially when dealing with the whole graph? These methods have different signatures, so we can’t use polymorphism. To pick a proper visitor method that’s able to process a given object, we’d need to check its class. Doesn’t this sound like a nightmare?</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=n>foreach</span> <span class=p>(</span><span class=n>Node</span> <span class=n>node</span> <span class=k>in</span> <span class=n>graph</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>node</span> <span class=n>instanceof</span> <span class=n>City</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>exportVisitor</span><span class=p>.</span><span class=n>doForCity</span><span class=p>((</span><span class=n>City</span><span class=p>)</span> <span class=n>node</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>node</span> <span class=n>instanceof</span> <span class=n>Industry</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>exportVisitor</span><span class=p>.</span><span class=n>doForIndustry</span><span class=p>((</span><span class=n>Industry</span><span class=p>)</span> <span class=n>node</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>You might ask, why don’t we use method overloading? That’s when you give all methods the same name, even if they support different sets of parameters. Unfortunately, even assuming that our programming language supports it at all (as Java and C# do), it won’t help us. Since the exact class of a node object is unknown in advance, the overloading mechanism won’t be able to determine the correct method to execute. It’ll default to the method that takes an object of the base <code>Node</code> class.</p><p>However, the Visitor pattern addresses this problem. It uses a technique called 
+<a href=https://refactoring.guru/design-patterns/visitor-double-dispatch rel=noopener>Double Dispatch</a>, which helps to execute the proper method on an object without cumbersome conditionals. Instead of letting the client select a proper version of the method to call, how about we delegate this choice to objects we’re passing to the visitor as an argument? Since the objects know their own classes, they’ll be able to pick a proper method on the visitor less awkwardly. They “accept” a visitor and tell it what visiting method should be executed.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=c1>// Client code
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=n>foreach</span> <span class=p>(</span><span class=n>Node</span> <span class=n>node</span> <span class=k>in</span> <span class=n>graph</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>node</span><span class=p>.</span><span class=n>accept</span><span class=p>(</span><span class=n>exportVisitor</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// City
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>City</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>Visitor</span> <span class=n>v</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>doForCity</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// Industry
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Industry</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>Visitor</span> <span class=n>v</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>doForIndustry</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span></code></pre></td></tr></table></div></div><p>I confess. We had to change the node classes after all. But at least the change is trivial and it lets us add further behaviors without altering the code once again.</p><p>Now, if we extract a common interface for all visitors, all existing nodes can work with any visitor you introduce into the app. If you find yourself introducing a new behavior related to nodes, all you have to do is implement a new visitor class.</p><a href=#real-world-analogy><h2 id=real-world-analogy><span class=hanchor arialabel=Anchor># </span> Real-World Analogy</h2></a><p><img src=https://refactoring.guru/images/patterns/content/visitor/visitor-comic-1.png width=auto alt="Insurance agent"></p><p>A good insurance agent is always ready to offer different policies to various types of organizations.</p><p>Imagine a seasoned insurance agent who’s eager to get new customers. He can visit every building in a neighborhood, trying to sell insurance to everyone he meets. Depending on the type of organization that occupies the building, he can offer specialized insurance policies:</p><ul><li>If it’s a residential building, he sells medical insurance.</li><li>If it’s a bank, he sells theft insurance.</li><li>If it’s a coffee shop, he sells fire and flood insurance.</li></ul><a href=#structure><h2 id=structure><span class=hanchor arialabel=Anchor># </span> Structure</h2></a><p><img src=https://refactoring.guru/images/patterns/diagrams/visitor/structure-en.png width=auto alt="Structure of the Visitor design pattern"></p><ol><li><p>The <strong>Visitor</strong> interface declares a set of visiting methods that can take concrete elements of an object structure as arguments. These methods may have the same names if the program is written in a language that supports overloading, but the type of their parameters must be different.</p></li><li><p>Each <strong>Concrete Visitor</strong> implements several versions of the same behaviors, tailored for different concrete element classes.</p></li><li><p>The <strong>Element</strong> interface declares a method for “accepting” visitors. This method should have one parameter declared with the type of the visitor interface.</p></li><li><p>Each <strong>Concrete Element</strong> must implement the acceptance method. The purpose of this method is to redirect the call to the proper visitor’s method corresponding to the current element class. Be aware that even if a base element class implements this method, all subclasses must still override this method in their own classes and call the appropriate method on the visitor object.</p></li><li><p>The <strong>Client</strong> usually represents a collection or some other complex object (for example, a 
+<a href=https://refactoring.guru/design-patterns/composite rel=noopener>Composite</a> tree). Usually, clients aren’t aware of all the concrete element classes because they work with objects from that collection via some abstract interface.</p></li></ol><a href=#pseudocode><h2 id=pseudocode><span class=hanchor arialabel=Anchor># </span> Pseudocode</h2></a><p>In this example, the <strong>Visitor</strong> pattern adds XML export support to the class hierarchy of geometric shapes.</p><p><img src=https://refactoring.guru/images/patterns/diagrams/visitor/example.png width=auto alt="Structure of the Visitor pattern example"></p><p>Exporting various types of objects into XML format via a visitor object.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-kotlin data-lang=kotlin><span class=line><span class=cl><span class=c1>// The element interface declares an `accept` method that takes
+</span></span></span><span class=line><span class=cl><span class=c1>// the base visitor interface as an argument.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>interface</span> <span class=nc>Shape</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>move</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>draw</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>v</span><span class=p>:</span> <span class=n>Visitor</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Each concrete element class must implement the `accept`
+</span></span></span><span class=line><span class=cl><span class=c1>// method in such a way that it calls the visitor&#39;s method that
+</span></span></span><span class=line><span class=cl><span class=c1>// corresponds to the element&#39;s class.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Dot</span> <span class=n>implements</span> <span class=n>Shape</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Note that we&#39;re calling `visitDot`, which matches the
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// current class name. This way we let the visitor know the
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// class of the element it works with.
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>v</span><span class=p>:</span> <span class=n>Visitor</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>visitDot</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Circle</span> <span class=n>implements</span> <span class=n>Shape</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>v</span><span class=p>:</span> <span class=n>Visitor</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>visitCircle</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>Rectangle</span> <span class=n>implements</span> <span class=n>Shape</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>v</span><span class=p>:</span> <span class=n>Visitor</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>visitRectangle</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>CompoundShape</span> <span class=n>implements</span> <span class=n>Shape</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// ...
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=n>method</span> <span class=n>accept</span><span class=p>(</span><span class=n>v</span><span class=p>:</span> <span class=n>Visitor</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>v</span><span class=p>.</span><span class=n>visitCompoundShape</span><span class=p>(</span><span class=k>this</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// The Visitor interface declares a set of visiting methods that
+</span></span></span><span class=line><span class=cl><span class=c1>// correspond to element classes. The signature of a visiting
+</span></span></span><span class=line><span class=cl><span class=c1>// method lets the visitor identify the exact class of the
+</span></span></span><span class=line><span class=cl><span class=c1>// element that it&#39;s dealing with.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>interface</span> <span class=nc>Visitor</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitDot</span><span class=p>(</span><span class=n>d</span><span class=p>:</span> <span class=n>Dot</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitCircle</span><span class=p>(</span><span class=n>c</span><span class=p>:</span> <span class=n>Circle</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitRectangle</span><span class=p>(</span><span class=n>r</span><span class=p>:</span> <span class=n>Rectangle</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitCompoundShape</span><span class=p>(</span><span class=n>cs</span><span class=p>:</span> <span class=n>CompoundShape</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// Concrete visitors implement several versions of the same
+</span></span></span><span class=line><span class=cl><span class=c1>// algorithm, which can work with all concrete element classes.
+</span></span></span><span class=line><span class=cl><span class=c1>//
+</span></span></span><span class=line><span class=cl><span class=c1>// You can experience the biggest benefit of the Visitor pattern
+</span></span></span><span class=line><span class=cl><span class=c1>// when using it with a complex object structure such as a
+</span></span></span><span class=line><span class=cl><span class=c1>// Composite tree. In this case, it might be helpful to store
+</span></span></span><span class=line><span class=cl><span class=c1>// some intermediate state of the algorithm while executing the
+</span></span></span><span class=line><span class=cl><span class=c1>// visitor&#39;s methods over various objects of the structure.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>XMLExportVisitor</span> <span class=n>implements</span> <span class=n>Visitor</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitDot</span><span class=p>(</span><span class=n>d</span><span class=p>:</span> <span class=n>Dot</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Export the dot&#39;s ID and center coordinates.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitCircle</span><span class=p>(</span><span class=n>c</span><span class=p>:</span> <span class=n>Circle</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Export the circle&#39;s ID, center coordinates and
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// radius.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitRectangle</span><span class=p>(</span><span class=n>r</span><span class=p>:</span> <span class=n>Rectangle</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Export the rectangle&#39;s ID, left-top coordinates,
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// width and height.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>visitCompoundShape</span><span class=p>(</span><span class=n>cs</span><span class=p>:</span> <span class=n>CompoundShape</span><span class=p>)</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// Export the shape&#39;s ID as well as the list of its
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// children&#39;s IDs.
+</span></span></span><span class=line><span class=cl><span class=c1></span>
+</span></span><span class=line><span class=cl><span class=c1>// The client code can run visitor operations over any set of
+</span></span></span><span class=line><span class=cl><span class=c1>// elements without figuring out their concrete classes. The
+</span></span></span><span class=line><span class=cl><span class=c1>// accept operation directs a call to the appropriate operation
+</span></span></span><span class=line><span class=cl><span class=c1>// in the visitor object.
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=k>class</span> <span class=nc>Application</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>    <span class=k>field</span> <span class=n>allShapes</span><span class=p>:</span> <span class=n>array</span> <span class=n>of</span> <span class=n>Shapes</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>method</span> <span class=n>export</span><span class=p>()</span> <span class=k>is</span>
+</span></span><span class=line><span class=cl>        <span class=n>exportVisitor</span> <span class=p>=</span> <span class=n>new</span> <span class=n>XMLExportVisitor</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=n>foreach</span> <span class=p>(</span><span class=n>shape</span> <span class=k>in</span> <span class=n>allShapes</span><span class=p>)</span> <span class=k>do</span>
+</span></span><span class=line><span class=cl>            <span class=n>shape</span><span class=p>.</span><span class=n>accept</span><span class=p>(</span><span class=n>exportVisitor</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>If you wonder why we need the <code>accept</code> method in this example, my article 
+<a href=https://refactoring.guru/design-patterns/visitor-double-dispatch rel=noopener>Visitor and Double Dispatch</a> addresses this question in detail.</p><a href=#applicability><h2 id=applicability><span class=hanchor arialabel=Anchor># </span> Applicability</h2></a><ul><li><strong>Use the Visitor when you need to perform an operation on all elements of a complex object structure (for example, an <a href=/CleanCode/Composite rel=noopener class=internal-link data-src=/CleanCode/Composite>object tree</a>).</strong>
+The Visitor pattern lets you execute an operation over a set of objects with different classes by having a visitor object implement several variants of the same operation, which correspond to all target classes.</li><li><strong>Use the Visitor to clean up the business logic of auxiliary behaviors.</strong>
+The pattern lets you make the primary classes of your app more focused on their main jobs by extracting all other behaviors into a set of visitor classes.</li><li><strong>Use the pattern when a behavior makes sense only in some classes of a class hierarchy, but not in others.</strong>
+You can extract this behavior into a separate visitor class and implement only those visiting methods that accept objects of relevant classes, leaving the rest empty.</li></ul><a href=#how-to-implement><h2 id=how-to-implement><span class=hanchor arialabel=Anchor># </span>How to Implement</h2></a><ol><li><p>Declare the visitor interface with a set of “visiting” methods, one per each concrete element class that exists in the program.</p></li><li><p>Declare the element interface. If you’re working with an existing element class hierarchy, add the abstract “acceptance” method to the base class of the hierarchy. This method should accept a visitor object as an argument.</p></li><li><p>Implement the acceptance methods in all concrete element classes. These methods must simply redirect the call to a visiting method on the incoming visitor object which matches the class of the current element.</p></li><li><p>The element classes should only work with visitors via the visitor interface. Visitors, however, must be aware of all concrete element classes, referenced as parameter types of the visiting methods.</p></li><li><p>For each behavior that can’t be implemented inside the element hierarchy, create a new concrete visitor class and implement all of the visiting methods.</p><p>You might encounter a situation where the visitor will need access to some private members of the element class. In this case, you can either make these fields or methods public, violating the element’s encapsulation, or nest the visitor class in the element class. The latter is only possible if you’re lucky to work with a programming language that supports nested classes.</p></li><li><p>The client must create visitor objects and pass them into elements via “acceptance” methods.</p></li></ol><a href=#pro-and--cons><h2 id=pro-and--cons><span class=hanchor arialabel=Anchor># </span>Pro and Cons</h2></a><table><thead><tr><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td><em><a href=/CleanCode/Open-Closed-Principle rel=noopener class=internal-link data-src=/CleanCode/Open-Closed-Principle>Open Closed Principle</a></em>. You can introduce a new behavior that can work with objects of different classes without changing these classes.</td><td> You need to update all visitors each time a class gets added to or removed from the element hierarchy.</td></tr><tr><td><em><a href=/CleanCode/Single-Responsibility-Principle rel=noopener class=internal-link data-src=/CleanCode/Single-Responsibility-Principle>Single Responsibility Principle</a></em>. You can move multiple versions of the same behavior into the same class.</td><td>Visitors might lack the necessary access to the private fields and methods of the elements that they’re supposed to work with.</td></tr><tr><td>A visitor object can accumulate some useful information while working with various objects. This might be handy when you want to traverse some complex object structure, such as an <a class="internal-link broken">td><td>object tree</a>, and apply the visitor to each object of this structure.</td></tr></tbody></table><a href=#relations-with-other-patterns><h2 id=relations-with-other-patterns><span class=hanchor arialabel=Anchor># </span>Relations with Other Patterns</h2></a><ul><li>You can treat Visitor as a powerful version of the <a href=/CleanCode/Command rel=noopener class=internal-link data-src=/CleanCode/Command>Command</a> pattern. Its objects can execute operations over various objects of different classes.</li><li>You can use Visitor to execute an operation over an entire <a href=/CleanCode/Composite rel=noopener class=internal-link data-src=/CleanCode/Composite>Composite</a> tree.</li><li>You can use Visitor along with <a href=/CleanCode/Iterator rel=noopener class=internal-link data-src=/CleanCode/Iterator>Iterator</a> to traverse a complex data structure and execute some operation over its elements, even if they all have different classes.</li></ul></article><hr><div class=page-end id=footer><div class=backlinks-container><h3>Backlinks</h3><ul class=backlinks><li><a href=/CleanCode/Composite/ data-ctx=CleanCode/Visitor data-src=/CleanCode/Composite class=internal-link>Composite</a></li><li><a href=/CleanCode/Design-Patterns/ data-ctx=CleanCode/Visitor data-src=/CleanCode/Design-Patterns class=internal-link>Design Patterns</a></li><li><a href=/CleanCode/Iterator/ data-ctx=CleanCode/Visitor data-src=/CleanCode/Iterator class=internal-link>Iterator</a></li></ul></div><div><script async src=https://cdn.jsdelivr.net/npm/d3@6.7.0/dist/d3.min.js integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI=" crossorigin=anonymous></script><h3>Interactive Graph</h3><div id=graph-container></div><style>:root{--g-node:var(--secondary);--g-node-active:var(--primary);--g-node-inactive:var(--visited);--g-link:var(--outlinegray);--g-link-active:#5a7282}</style><script src=https://knowledge.vogel.business/js/graph.6579af7b10c818dbd2ca038702db0224.js></script></div></div><div id=contact_buttons><footer><p>Made by Moritz Vogel using <a href=https://github.com/jackyzha0/quartz>Quartz</a>, © 2023</p><ul><li><a href=https://knowledge.vogel.business>Home</a></li><li><a href=https://github.com/Momolem>GitHub</a></li><li><a href=https://gitlab.com/Momolem>Gitlab</a></li></ul></footer></div></div></body></html>
