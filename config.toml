@@ -1,4 +1,4 @@
-baseURL = "https://knowledge.vogel.business"
+baseURL = "https://blog.vogel.business"
 languageCode = "en-us"
 relativeURLs = false
 disablePathToLower = true
