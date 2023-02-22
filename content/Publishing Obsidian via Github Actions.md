@@ -1,7 +1,12 @@
 ---
 title: "Publishing Obsidian via Github Actions"
+date: 2023-02-21
 tags: 
-  - "cs"
+  - "Computer Science"
+  - "Obsidian"
+  - "Github Actions"
+  - "CI/CD"
+  - "Quartz"
 ---
 
 ## Background Story
