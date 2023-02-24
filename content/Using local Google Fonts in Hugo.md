@@ -4,7 +4,6 @@ tags:
 - "Computer Science"
 - "Hugo"
 - "Quartz"
-draft: true
 ---
 
 As I was customizing this blog, I wanted to change the fonts to fit the style of my [Website](https://vogel.business).  I used three different Fonts there:
