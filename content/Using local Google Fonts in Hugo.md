@@ -14,15 +14,15 @@ As I was customizing this blog, I wanted to change the fonts to fit the style of
 To comply to local law I needed to host the Google Fonts by myself, so I needed to do this again for this blog. Google explains how you can do this in this [blog post](https://fonts.google.com/knowledge/using_type/self_hosting_web_fonts). But you basically just download the font that is referenced in the stylesheet and change that reference to a local path.
 
 ## Problem
-So I downloaded the fonts and put them in the asset folder, like I would normally do in frameworks like [vue.js](https://vuejs.org/). But after I pushed my changes to github pages the fonts where not available in the specified path.
+So I downloaded the fonts and put them in the asset folder, like I would normally do in frameworks like [vue.js](https://vuejs.org/). But after I pushed my changes to GitHub pages, the fonts were not available in the specified path.
 
 ## Solution
-Because hugo uses a webpacker the paths from the development environment do not exist anymore but I noticed that files from the `static/` folder seem to be in the root directory of compiled version of the project. 
+Because hugo uses a webpacker the paths from the development environment do not exist any more, but I noticed that files from the `static/` folder seem to be in the root directory of the compiled version of the project. 
 
 So I moved my fonts into `static/fonts` and referenced the fonts with `fonts/<FONT_NAME>`
 
 ## Example
-To reference the *DM Serif Display* font for example you need to add the following to the `assets/styles/custom.scss`:
+To reference the *DM Serif Display* font for example, you need to add the following to the `assets/styles/custom.scss`:
 ```scss
 /* latin */
 @font-face {
@@ -42,4 +42,4 @@ To reference the *DM Serif Display* font for example you need to add the followi
 ```
 
 >[!warning] As you can see the relative path does not correspond to the folder structure of your development environment! The path changes after it is compiled by the webpacker
-![[static_fonts_folderstructure.png]]
+![[media/static_fonts_folderstructure.png]]
