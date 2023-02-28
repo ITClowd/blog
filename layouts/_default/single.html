@@ -10,6 +10,16 @@
     <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
       <p class="meta">
+        {{- range .Params.authors }}
+          {{- with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
+            <figure>
+              <img src="{{ .Params.photo }}" alt=""/>
+              <figcaption>
+                <a href="{{ .Permalink }}">{{ .Params.name }}</a>
+              </figcaption>
+            </figure>
+          {{ end }}
+        {{ end }}
         {{ i18n "last_updated" }} {{ partial "date-fmt.html" .}} 
           {{ partial "github.html" . }}
       </p>

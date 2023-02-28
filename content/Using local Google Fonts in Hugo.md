@@ -1,5 +1,7 @@
 ---
 title: "Using local Google Fonts in Hugo"
+authors:
+  - Moritz Vogel
 tags:
 - "Computer Science"
 - "Hugo"

@@ -1,6 +1,8 @@
 ---
 title: "Publishing Obsidian via Github Actions"
 date: 2023-02-21
+authors:
+  - Moritz Vogel
 tags: 
   - "Computer Science"
   - "Obsidian"
