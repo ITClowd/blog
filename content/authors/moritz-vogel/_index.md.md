@@ -1,6 +1,6 @@
 ---
 name: Moritz Vogel
-photo: 'media/moritz_vogel.png'
+photo: 'authors/moritz_vogel.png'
 twitter: 'https://twitter.com/birdsman'
 ---
 
