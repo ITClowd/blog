@@ -24,6 +24,16 @@ So I moved my fonts into `static/fonts` and referenced the fonts with `fonts/<FO
 ## Example
 To reference the *DM Serif Display* font for example, you need to add the following to the `assets/styles/custom.scss`:
 ```scss
+/* latin-ext */
+@font-face {
+  font-family: 'DM Serif Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/-nFnOHM81r4j6k0gjAW3mujVU2B2G_5x0ujy.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 /* latin */
 @font-face {
 	font-family: 'DM Serif Display';
