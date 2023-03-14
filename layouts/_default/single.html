@@ -9,17 +9,14 @@
     {{partial "header.html" .}}
     <article>
       {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
-      <div class="author">
+      <div class="authors meta">
+        <p>written by:
         {{- range .Params.authors }}
           {{- with $.Site.GetPage "taxonomyTerm" (printf "authors/%s" (urlize .)) }}
-            <figure>
-              <img src="{{ .Params.photo }}" width="128px" alt=""/>
-              <figcaption>
                 <a href="{{ .Permalink }}">{{ .Params.name }}</a>
-              </figcaption>
-            </figure>
           {{ end }}
         {{ end }}
+      </p>
       </div>
       <p class="meta">
         {{ i18n "last_updated" }} {{ partial "date-fmt.html" .}} 

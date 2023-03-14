@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ .Lang }}">
+{{ partial "head.html" . }}
+
+<body>
+{{partial "search.html" .}}
+<div class="singlePage">
+    {{partial "header.html" .}}  
+
+    <img src="{{ .Params.photo }}" alt=""/>
+    <h1>{{ .Params.name }}</h1>
+    
+    {{ .Content }}
+   
+    
+    <h3>Articles</h3>
+    <ul>
+    {{ range .Data.Pages }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+    {{ end }}
+    </ul>
+</div>
+</body>
+</html>
+
+
+
