@@ -1,5 +1,7 @@
 ---
 title: "How To Host SPAs on Gitlab Pages"
+authors: 
+  - Moritz Vogel
 tags:
 - "Computer Science"
 - "Website"
